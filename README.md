@@ -17,9 +17,11 @@ Install the dependencies:
 
 ```http://localhost:19200/auth/signup/```
 
-```{
+```json
+{
     "name": "Shohel Rana",
     "email": "cse_shohel@yahoo.com",
     "password": "123456",
     "role": "admin"
-}```
+}
+```
