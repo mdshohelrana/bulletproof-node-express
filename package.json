@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A bulletproof Node.js and Express.js application setup.",
   "private": true,
-  "main": "index.js",
+  "main": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/mdshohelrana/bulletproof-node-express.git"
@@ -11,31 +11,46 @@
   "author": "Shohel Rana <cse_shohel@yahoo.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec ts-node ./src/index.ts",
-    "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/migrations/default",
-    "migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc -w",
+    "dev": "nodemon src/index.ts",
+    "start": "tsc && node dist/index.js",
+    "build": "tsc",
+    "test": "jest",
+    "start:dev": "concurrently \"npm run watch\" \"npm run dev\"",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "migration": "npm run typeorm migration:run -- -d ./src/data-source.ts"
   },
   "engines": {
     "node": ">=12.0.0"
   },
   "dependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.12.7",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-async-errors": "^3.1.1",
-    "pg": "^8.11.5",
-    "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.20"
+    "@types/cors": "^2.8.15",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "memory-cache": "^0.2.0",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.17"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "concurrently": "^7.0.0",
+    "eslint": "^8.57.0",
+    "jest": "^27.4.5",
     "nodemon": "^3.1.0",
+    "ts-jest": "^27.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "eslintConfig": {
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
     "rules": {
       "semi": [
         "error",
@@ -50,16 +65,5 @@
   "prettier": {
     "singleQuote": true,
     "semi": false
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   }
 }
