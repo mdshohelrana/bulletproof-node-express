@@ -1,4 +1,4 @@
-# Project Name
+# bulletproof-node-express
 
 A brief description of your project.
 
