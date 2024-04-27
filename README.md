@@ -15,7 +15,8 @@ A brief description of your project.
 
 Install the dependencies:
 
-```http://localhost:19200/auth/signup/
+```http://localhost:19200/auth/signup/```
+
 ```{
     "name": "Shohel Rana",
     "email": "cse_shohel@yahoo.com",
