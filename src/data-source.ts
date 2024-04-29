@@ -20,6 +20,6 @@ export const AppDataSource = new DataSource({
   synchronize: NODE_ENV === "dev" ? false : false,
   logging: NODE_ENV === "dev" ? false : false,
   entities: [User, Movie],
-  migrations: [__dirname + "/migration/*.ts"],
+  migrations: [__dirname + "/migrations/*.ts"],
   subscribers: [],
 });
