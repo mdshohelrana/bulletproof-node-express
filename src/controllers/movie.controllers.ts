@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as cache from "memory-cache";
 import { AppDataSource } from "../data-source";
-import { Movie } from "../entity/Movies.entity";
+import { Movie } from "../db/entity/movies.entity";
 
 export class MovieController {
   static async getAllMovies(req: Request, res: Response) {

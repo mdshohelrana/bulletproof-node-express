@@ -17,8 +17,9 @@
     "build": "tsc",
     "test": "jest",
     "start:dev": "concurrently \"npm run watch\" \"npm run dev\"",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
-    "migration": "npm run typeorm migration:run -- -d ./src/data-source.ts"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migrate:generate": "yarn typeorm migration:generate ./src/db/migrations/bulletproof -d ./src/data-source.ts",
+    "migrate": "yarn typeorm migration:run -d src/data-source.ts"
   },
   "engines": {
     "node": ">=18.0.0"
